@@ -1,4 +1,4 @@
-/opt/st/stm32cubeide_1.19.0/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.linux64_1.0.0.202410170706/tools/arm-none-eabi/include/c++/13.3.1/cmath:234:3:constexpr float std::fabs(float)	1
+/home/terry/st/stm32cubeide_2.1.1/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.14.3.rel1.linux64_1.0.100.202602081740/tools/arm-none-eabi/include/c++/14.3.1/cmath:238:3:constexpr float std::fabs(float)	1
 ../Core/Inc/Control_Lib/motor_ctrl/Src/motor_ctrl.cpp:4:6:void MotorController::init(int, int)	1
 ../Core/Inc/Control_Lib/motor_ctrl/Src/motor_ctrl.cpp:11:6:void MotorController::setSpeed(float)	7
 ../Core/Inc/Control_Lib/motor_ctrl/Src/motor_ctrl.cpp:38:7:float MotorController::getSpeed()	1

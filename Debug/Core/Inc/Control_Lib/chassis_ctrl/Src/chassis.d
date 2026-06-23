@@ -1,7 +1,7 @@
 Core/Inc/Control_Lib/chassis_ctrl/Src/chassis.o: \
  ../Core/Inc/Control_Lib/chassis_ctrl/Src/chassis.cpp \
- /home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis.hpp \
- /home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_ctrl.hpp \
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis.hpp \
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_ctrl.hpp \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -37,11 +37,11 @@ Core/Inc/Control_Lib/chassis_ctrl/Src/chassis.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/stm32f4xx_it.h \
  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h \
- /home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h \
- /home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_config.h \
- /home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h
-/home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis.hpp:
-/home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_ctrl.hpp:
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h \
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_config.h \
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h
+/home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis.hpp:
+/home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_ctrl.hpp:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
@@ -77,6 +77,6 @@ Core/Inc/Control_Lib/chassis_ctrl/Src/chassis.o: \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Core/Inc/stm32f4xx_it.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h:
-/home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h:
-/home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_config.h:
-/home/latuuu/STM32CubeIDE/workspace_1.19.0/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h:
+/home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h:
+/home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_config.h:
+/home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h:

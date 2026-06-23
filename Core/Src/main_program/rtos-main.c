@@ -35,46 +35,21 @@ int sec = 0,tct = 0;
 
 void StartDefaultTask(void *argument)
 {
-//    xTimer = xTimerCreate("MotorTimer", pdMS_TO_TICKS(1), pdTRUE, (void *)0, motorTimerCallback);
-//    xTimerStart(xTimer, 0);
-//    HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL);
-	HAL_TIM_Base_Start_IT(&htim5);
-	uros_init();
-    motor_init();
-    pinpoint_init();
-//    HAL_TIM_PWM_Start(&htim8, TIM_CHANNEL_1);
-//    HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
-//    trace_init();
+    uros_init();
 
-    for(;;)
+    for (;;)
     {
         uros_agent_status_check();
-        osDelay(1000/FREQUENCY);
+        osDelay(10);
     }
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-  /* USER CODE BEGIN Callback 0 */
-	if (htim->Instance == TIM5)
-	{
-		sec++;
-		tct++;
-//		chassis_monitor();
-		chassis_set_speed(vx, vy, vz);
-		update_pinpoint_pose();
-		chassis_give_speed();
-		update_pose(pos_x, pos_y, pos_z, vel_x, vel_y, vel_z);
-		pinpoint_monitor();
-	}
-  /* USER CODE END Callback 0 */
-	if (htim->Instance == TIM6)
-	{
-		HAL_IncTick();
-	}
-  /* USER CODE BEGIN Callback 1 */
-//
-  /* USER CODE END Callback 1 */
+    if (htim->Instance == TIM6)
+    {
+        HAL_IncTick();
+    }
 }
 
 //void motorTimerCallback(TimerHandle_t xTimer)
