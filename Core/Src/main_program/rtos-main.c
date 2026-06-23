@@ -71,8 +71,8 @@ void StartDefaultTask(void *argument)
          * 5. cmd_vel -> chassis.
          * cmd_vel callback 會更新 vx, vy, vz。
          */
-        chassis_set_speed(0.3, 0.0, 0.0);
-        chassis_give_speed();
+//        chassis_set_speed(0.3, 0.0, 0.0);
+//        chassis_give_speed();
 #endif
 
 #if ENABLE_PINPOINT
@@ -101,7 +101,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			sec++;
 			tct++;
 		    // chassis_monitor();
-			chassis_set_speed(vx, vy, vz);
+			chassis_set_speed(0.3, 0.0, 0.0);
 		    chassis_give_speed();
 		  }
     /*
