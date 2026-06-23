@@ -134,7 +134,7 @@ int main(void)
   MX_TIM4_Init();
   MX_TIM5_Init();
   MX_TIM8_Init();
-  MX_ADC1_Init();
+//  MX_ADC1_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
