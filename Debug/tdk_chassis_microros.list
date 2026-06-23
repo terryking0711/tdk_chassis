@@ -3038,7 +3038,7 @@ void uros_create_entities(void) {
     &cmd_vel_sub,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
-    "robot/cmd_vel");
+    "mecanum/cmd_vel");
   cmd_vel_msg.linear.x = 0.0;
  8001e32:	4945      	ldr	r1, [pc, #276]	@ (8001f48 <uros_create_entities+0x248>)
  8001e34:	f04f 0200 	mov.w	r2, #0

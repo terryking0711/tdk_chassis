@@ -173,7 +173,7 @@ void uros_create_entities(void) {
     &cmd_vel_sub,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(geometry_msgs, msg, Twist),
-    "robot/cmd_vel");
+    "mecanum/cmd_vel");
   cmd_vel_msg.linear.x = 0.0;
   cmd_vel_msg.linear.y = 0.0;
   cmd_vel_msg.linear.z = 0.0;
