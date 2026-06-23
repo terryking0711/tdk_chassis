@@ -40,6 +40,7 @@ void StartDefaultTask(void *argument)
     /*
      * 1. micro-ROS transport first.
      */
+	HAL_TIM_Base_Start_IT(&htim5);
     uros_init();
 
 #if ENABLE_MOTOR_CONTROL
@@ -70,7 +71,7 @@ void StartDefaultTask(void *argument)
          * 5. cmd_vel -> chassis.
          * cmd_vel callback 會更新 vx, vy, vz。
          */
-        chassis_set_speed(vx, vy, vz);
+        chassis_set_speed(0.3, 0.0, 0.0);
         chassis_give_speed();
 #endif
 
@@ -95,6 +96,14 @@ void StartDefaultTask(void *argument)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+	if (htim->Instance == TIM5)
+		  {
+			sec++;
+			tct++;
+		    // chassis_monitor();
+			chassis_set_speed(vx, vy, vz);
+		    chassis_give_speed();
+		  }
     /*
      * 只保留 HAL tick。
      * 不要在 interrupt 裡跑 chassis / Pinpoint / micro-ROS。

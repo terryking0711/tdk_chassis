@@ -1,6 +1,13 @@
+/*
+ * chassis_monitor.hpp
+ *
+ *  Created on: Jun 17, 2026
+ *      Author: hsuanjung
+ */
 
-#ifndef INC_CONTROL_LIB_CHASSIS_CTRL_INC_CHASSIS_MONITOR_HPP_
-#define INC_CONTROL_LIB_CHASSIS_CTRL_INC_CHASSIS_MONITOR_HPP_
+#ifndef INC_CONTROL_LIB_CHASSIS_INC_CHASSIS_MONITOR_HPP_
+#define INC_CONTROL_LIB_CHASSIS_INC_CHASSIS_MONITOR_HPP_
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,10 +21,7 @@ extern float vel_x, vel_y, vel_z;
 
 #ifdef __cplusplus
 }
-
 #endif
 
 
-
-
-#endif /* INC_CONTROL_LIB_CHASSIS_CTRL_INC_CHASSIS_MONITOR_HPP_ */
+#endif /* INC_CONTROL_LIB_CHASSIS_INC_CHASSIS_MONITOR_HPP_ */

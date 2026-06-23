@@ -41,8 +41,7 @@ Core/Inc/Control_Lib/chassis_ctrl/Src/chassis_monitor.o: \
  /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_config.h \
  /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h \
  /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_monitor.hpp \
- /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_monitor.hpp \
- /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/Pinpoint/Inc/Pinpoint.hpp
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_monitor.hpp
 /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis.hpp:
 /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_ctrl.hpp:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -85,4 +84,3 @@ Core/Inc/Control_Lib/chassis_ctrl/Src/chassis_monitor.o: \
 /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h:
 /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_monitor.hpp:
 /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_monitor.hpp:
-/home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/Pinpoint/Inc/Pinpoint.hpp:

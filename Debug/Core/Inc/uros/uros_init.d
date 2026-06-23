@@ -218,7 +218,8 @@ Core/Inc/uros/uros_init.o: ../Core/Inc/uros/uros_init.cpp \
  /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros/include/nav_msgs/msg/detail/odometry__type_support.h \
  ../Core/Inc/uros/config.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros/include/rosidl_runtime_c/string_functions.h
 ../Core/Inc/uros/uros_init.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h:
 ../Drivers/CMSIS/Include/core_cm4.h:
@@ -439,3 +440,4 @@ Core/Inc/uros/uros_init.o: ../Core/Inc/uros/uros_init.cpp \
 ../Core/Inc/uros/config.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+/home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/micro_ros_stm32cubemx_utils/microros_static_library_ide/libmicroros/include/rosidl_runtime_c/string_functions.h:

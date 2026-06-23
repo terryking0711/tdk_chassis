@@ -10,6 +10,7 @@
 #include <math.h>
 #include <string.h>
 #include <rmw_microros/time_sync.h>
+#include <rosidl_runtime_c/string_functions.h>
 
 float vx = 0.0 ,vy = 0.0 ,vz = 0.0;
 
@@ -145,14 +146,26 @@ void uros_create_entities(void) {
     &pose_pub,
     &node,
     ROSIDL_GET_MSG_TYPE_SUPPORT(nav_msgs, msg, Odometry),
-    "robot/pose");
-  pose_msg.pose.pose.position.x = 830.0;
-  pose_msg.pose.pose.position.y = 6160.0;
+    "odom");
+
+  rosidl_runtime_c__String__assign(&pose_msg.header.frame_id, "odom");
+  rosidl_runtime_c__String__assign(&pose_msg.child_frame_id, "base_footprint");
+
+  pose_msg.pose.pose.position.x = 0.0;
+  pose_msg.pose.pose.position.y = 0.0;
   pose_msg.pose.pose.position.z = 0.0;
+
   pose_msg.pose.pose.orientation.x = 0.0;
   pose_msg.pose.pose.orientation.y = 0.0;
   pose_msg.pose.pose.orientation.z = 0.0;
-  pose_msg.pose.pose.orientation.w = 0.0;
+  pose_msg.pose.pose.orientation.w = 1.0;
+
+  pose_msg.twist.twist.linear.x = 0.0;
+  pose_msg.twist.twist.linear.y = 0.0;
+  pose_msg.twist.twist.linear.z = 0.0;
+  pose_msg.twist.twist.angular.x = 0.0;
+  pose_msg.twist.twist.angular.y = 0.0;
+  pose_msg.twist.twist.angular.z = 0.0;
 
   rclc_publisher_init_default(                                                  // Initialize publisher for pose
     &arm_pub,
@@ -286,22 +299,14 @@ void update_pose(float pos_x, float pos_y, float pos_z, float vel_x, float vel_y
 
 
 void pose_pub_timer_cb(rcl_timer_t * timer, int64_t last_call_time) {
-  // 更新时间戳
-//  uint32_t current_tick = HAL_GetTick();
-//  pose_msg.header.stamp.sec = current_tick / 1000;
-//  pose_msg.header.stamp.nanosec = (current_tick % 1000) * 1000000;
-  
-//  int64_t time_ns = rmw_uros_epoch_nanos();
-//  pose_msg.header.stamp.sec = time_ns / 1000000000LL;
-//  pose_msg.header.stamp.nanosec = time_ns % 1000000000LL;
-//  rcl_ret_t ret = rcl_publish(&pose_pub, &pose_msg, NULL);
+  (void) timer;
+  (void) last_call_time;
+
+  uint32_t current_tick = HAL_GetTick();
+  pose_msg.header.stamp.sec = current_tick / 1000;
+  pose_msg.header.stamp.nanosec = (current_tick % 1000) * 1000000;
+
   rcl_publish(&pose_pub, &pose_msg, NULL);
-  
-  // 可选：添加调试信息（如果需要的话）
-  // printf("Published pose: x=%.2f, y=%.2f, yaw=%.2f, ret=%d\n", 
-  //        pose_msg.pose.pose.position.x, 
-  //        pose_msg.pose.pose.position.y, 
-  //        current_yaw, ret);
 }
 
 void cmd_arm_sub_cb(const void* msgin) {

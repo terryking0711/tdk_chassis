@@ -1,3 +1,11 @@
+/*
+ * chassis.cpp
+ *
+ *  Created on: Jun 17, 2026
+ *      Author: hsuanjung
+ */
+
+
 #include "chassis.hpp"
 #include "motor_config.h"
 float Vx_global,Vy_global,dt;
@@ -33,8 +41,19 @@ void Chassis::Mecan_ForwardKinematics(){
 }
 
 void Chassis::Mecan_InverseKinematics(){
-    _V_FR_goal = -_Vx_goal + _Vy_goal + _W_goal * _chassis_factor;
-    _V_FL_goal = _Vx_goal + _Vy_goal - _W_goal * _chassis_factor;
-    _V_BR_goal = _Vx_goal + _Vy_goal + _W_goal * _chassis_factor;
-    _V_BL_goal = -_Vx_goal + _Vy_goal - _W_goal * _chassis_factor;
+//    _V_FR_goal = -_Vx_goal + _Vy_goal + _W_goal * _chassis_factor;
+//    _V_FL_goal = _Vx_goal + _Vy_goal - _W_goal * _chassis_factor;
+//    _V_BR_goal = _Vx_goal + _Vy_goal + _W_goal * _chassis_factor;
+//    _V_BL_goal = -_Vx_goal + _Vy_goal - _W_goal * _chassis_factor;
+
+//	  _V_FR_goal = _Vx_goal + _Vy_goal + _W_goal * _chassis_factor;
+//	  _V_FL_goal = _Vx_goal - _Vy_goal - _W_goal * _chassis_factor;
+//	  _V_BR_goal = _Vx_goal - _Vy_goal + _W_goal * _chassis_factor;
+//	  _V_BL_goal = _Vx_goal + _Vy_goal - _W_goal * _chassis_factor;
+	  _V_FL_goal = _Vx_goal + _Vy_goal - _W_goal * _chassis_factor;
+	  _V_FR_goal = _Vx_goal - _Vy_goal + _W_goal * _chassis_factor;
+	  _V_BL_goal = _Vx_goal - _Vy_goal - _W_goal * _chassis_factor;
+	  _V_BR_goal = _Vx_goal + _Vy_goal + _W_goal * _chassis_factor;
 }
+
+

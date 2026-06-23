@@ -1,7 +1,17 @@
+/*
+ * chassis_monitor.cpp
+ *
+ *  Created on: Jun 17, 2026
+ *      Author: hsuanjung
+ */
+
+
+
+
 #include "chassis.hpp"
 #include "chassis_monitor.hpp"
 #include "motor_monitor.hpp"
-#include "Pinpoint.hpp"
+//#include "Pinpoint.hpp"
 
 extern MotorController Motor_FR;
 extern MotorController Motor_FL;
@@ -12,7 +22,7 @@ float Vx_goal = 0.0;
 float Vy_goal = 0.0;
 float W_goal = 0.0;
 float w_goal,x_goal,y_goal;
-extern PinpointI2C::BulkData bd;
+//extern PinpointI2C::BulkData bd;
 float x_error,y_error;
 float vel_x, vel_y, vel_z;
 

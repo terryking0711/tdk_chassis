@@ -3,7 +3,7 @@
 
 // micro-ROS configuration
 #define NODE_NAME "cubeMX_node"
-#define DOMAIN_ID 0
+#define DOMAIN_ID 30
 #define FREQUENCY 100
 #define USARTx huart2
 

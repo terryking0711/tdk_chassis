@@ -1,12 +1,21 @@
-#ifndef CHASSIS_HPP
-#define CHASSIS_HPP
+/*
+ * chassis.hpp
+ *
+ *  Created on: Jun 17, 2026
+ *      Author: hsuanjung
+ */
+
+#ifndef INC_CONTROL_LIB_CHASSIS_INC_CHASSIS_HPP_
+#define INC_CONTROL_LIB_CHASSIS_INC_CHASSIS_HPP_
+
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 #include "math.h"
-#include "motor_ctrl.hpp"
+#include <motor_ctrl.hpp>
 #include "chassis_config.h"
 #include "motor_config.h"
 
@@ -32,7 +41,7 @@ class Chassis {
         MotorController* _motorBL;
         float _Vx_now = 0, _Vy_now = 0, _W_now = 0;
     private:
-        
+
         float _V_FR_goal = 0, _V_FL_goal = 0, _V_BR_goal = 0, _V_BL_goal = 0;
         float _Vx_goal = 0, _Vy_goal = 0, _W_goal = 0;
         float _chassis_factor = (CHASSIS_LENGTH + CHASSIS_WIDTH) / (PI * WHEEL_DIA);
@@ -44,4 +53,6 @@ class Chassis {
 }
 #endif
 
-#endif // CHASSIS_HPP
+
+
+#endif /* INC_CONTROL_LIB_CHASSIS_INC_CHASSIS_HPP_ */

@@ -1,5 +1,13 @@
+/*
+ * motor_monitor.cpp
+ *
+ *  Created on: Jun 17, 2026
+ *      Author: hsuanjung
+ */
+
+
+#include <motor_ctrl.hpp>
 #include "motor_monitor.hpp"
-#include "motor_ctrl.hpp"
 
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;
@@ -17,16 +25,16 @@ extern TIM_HandleTypeDef htim8;
 //右  PC5
 //switch： PA4(程式啟動)
 //motor：
-//           dir    pwm    enA/enB
-//    FR :B12   PC6      PA8/PA9
-//    FL :A12   PC7      PA1/PA5
-//    BR :B14   PC8      PA6/PA7
-//    BL :B15   PC9      PB6/PB7
+//         INA/INB      pwm
+//    FR : A11/A10      PA8
+//    FL : A13/A12      PC7
+//    BR : B13/B12      PC8
+//    BL : B15/B14      PC9
 //
-MotorController Motor_FR(&htim1, &htim8, TIM_CHANNEL_1, GPIOB, GPIO_PIN_12, 1.1, 40, 0);
-MotorController Motor_FL(&htim2, &htim8, TIM_CHANNEL_2, GPIOA, GPIO_PIN_12, 1.1, 40, 0);
-MotorController Motor_BR(&htim3, &htim8, TIM_CHANNEL_3, GPIOB, GPIO_PIN_14, 1.1, 40, 0);
-MotorController Motor_BL(&htim4, &htim8, TIM_CHANNEL_4, GPIOB, GPIO_PIN_15, 1.1, 40, 0);
+MotorController Motor_FR(&htim1, &htim8, TIM_CHANNEL_1, GPIOA, GPIO_PIN_11, GPIOA, GPIO_PIN_10, 1.1, 40, 0);
+MotorController Motor_FL(&htim2, &htim8, TIM_CHANNEL_2, GPIOC, GPIO_PIN_12, GPIOA, GPIO_PIN_12, 1.1, 40, 0);
+MotorController Motor_BR(&htim3, &htim8, TIM_CHANNEL_3, GPIOB, GPIO_PIN_13, GPIOB, GPIO_PIN_12, 1.1, 40, 0);
+MotorController Motor_BL(&htim4, &htim8, TIM_CHANNEL_4, GPIOB, GPIO_PIN_15, GPIOB, GPIO_PIN_14, 1.1, 40, 0);
 
 float VgoalFR = 0.0;
 float VgoalFL = 0.0;
@@ -35,10 +43,10 @@ float VgoalBL = 0.0;
 
 
 void motor_init(){
-	Motor_FR.init( 1, 1);
-	Motor_FL.init( 1,-1);
-	Motor_BR.init(-1, 1);
-	Motor_BL.init( 1,-1);
+	Motor_FR.init( 1,-1);
+	Motor_FL.init( 1, 1);
+	Motor_BR.init( 1,-1);
+	Motor_BL.init( 1, 1);
 }
 
 void motor_monitor(void) {
@@ -46,8 +54,6 @@ void motor_monitor(void) {
     Motor_BR.setSpeed(VgoalBR);
     Motor_FL.setSpeed(VgoalFL);
     Motor_BL.setSpeed(VgoalBL);
-//    test = Motor_BR.getSpeed();
-//    Motor_BL.getSpeed();
-//    Motor_FR.getSpeed();
-//    Motor_FL.getSpeed();
 }
+
+
