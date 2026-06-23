@@ -101,7 +101,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			sec++;
 			tct++;
 		    // chassis_monitor();
-			chassis_set_speed(3.0, 0.0, 0.0);
+			chassis_set_speed(vx, vy, vz);
 		    chassis_give_speed();
 		  }
     /*
