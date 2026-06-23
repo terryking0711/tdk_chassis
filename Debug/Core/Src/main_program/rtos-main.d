@@ -223,7 +223,8 @@ Core/Src/main_program/rtos-main.o: ../Core/Src/main_program/rtos-main.c \
  /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/uros/config.h \
  /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h \
  /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_monitor.hpp \
- /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/Pinpoint/Inc/Pinpoint_monitor.hpp
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/Pinpoint/Inc/Pinpoint_monitor.hpp \
+ /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/uros/config.h
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h:
 ../Drivers/CMSIS/Include/core_cm4.h:
 ../Drivers/CMSIS/Include/cmsis_version.h:
@@ -450,3 +451,4 @@ Core/Src/main_program/rtos-main.o: ../Core/Src/main_program/rtos-main.c \
 /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/motor_ctrl/Inc/motor_config.h:
 /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/chassis_ctrl/Inc/chassis_monitor.hpp:
 /home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/Control_Lib/Pinpoint/Inc/Pinpoint_monitor.hpp:
+/home/terry/stm32_ws/tdk_chassis_2/tdk_chassis_microros/Core/Inc/uros/config.h:

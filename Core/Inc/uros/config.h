@@ -7,7 +7,9 @@
 #define FREQUENCY 100
 #define USARTx huart2
 
-// Motor control configuration
-#define ENABLE_MOTOR_CONTROL 0  // 設為 0 可禁用 motor 功能進行測試
+// Hardware feature switches
+#define ENABLE_MOTOR_CONTROL 1
+#define ENABLE_CHASSIS_CONTROL 1
+#define ENABLE_PINPOINT 0
 
 #endif /* CONFIG_H */
