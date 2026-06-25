@@ -11,6 +11,7 @@
 #include <string.h>
 #include <rmw_microros/time_sync.h>
 #include <rosidl_runtime_c/string_functions.h>
+#include <rmw_microros/rmw_microros.h>
 
 float vx = 0.0 ,vy = 0.0 ,vz = 0.0;
 
@@ -93,6 +94,7 @@ void handle_state_agent_waiting(void) {
 }
 void handle_state_agent_available(void) {
   uros_create_entities();
+  rmw_uros_sync_session(1000);
   status = AGENT_CONNECTED;
 }
 void handle_state_agent_connected(void) {
@@ -302,9 +304,9 @@ void pose_pub_timer_cb(rcl_timer_t * timer, int64_t last_call_time) {
   (void) timer;
   (void) last_call_time;
 
-  uint32_t current_tick = HAL_GetTick();
-  pose_msg.header.stamp.sec = current_tick / 1000;
-  pose_msg.header.stamp.nanosec = (current_tick % 1000) * 1000000;
+  int64_t now_ns = rmw_uros_epoch_nanos();
+  pose_msg.header.stamp.sec     = (int32_t)(now_ns / 1000000000LL);
+  pose_msg.header.stamp.nanosec = (uint32_t)(now_ns % 1000000000LL);
 
   rcl_publish(&pose_pub, &pose_msg, NULL);
 }
