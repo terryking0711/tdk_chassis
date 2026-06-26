@@ -131,6 +131,7 @@ void handle_state_agent_trying(void) {
   }
 }
 void handle_state_agent_disconnected(void) {
+  vx = 0.0f; vy = 0.0f; vz = 0.0f;  // 斷線時停車
   uros_destroy_entities();
   status = AGENT_WAITING;
 }

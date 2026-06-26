@@ -25,7 +25,7 @@ double LastCNT = 0;
 double CNT = 500;
 int turn = 0;
 double currentsp = 0;
-int sec = 0, tct = 0;
+int tct = 0;
 
 /*
  * 若未啟用 Pinpoint，提供本地 dummy pose。
@@ -94,7 +94,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Instance == TIM5)
 		  {
-			sec++;
 			tct++;
 		    // chassis_monitor();
 			chassis_set_speed(vx, vy, vz);

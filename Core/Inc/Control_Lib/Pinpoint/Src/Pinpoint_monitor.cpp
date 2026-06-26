@@ -2,12 +2,10 @@
 #include <Control_Lib/Pinpoint/Inc/Pinpoint_monitor.hpp>
 #include "main.h"
 #include "cmsis_os.h"
-#define update_period 5
 
 extern PinpointI2C pinpoint;
 extern PinpointI2C::BulkData bd;
 extern I2C_HandleTypeDef hi2c1;
-extern int sec;
 float pos_x, pos_y, pos_z;
 bool check = 0;
 extern float vel_x, vel_y, vel_z;            // 定義於 chassis_monitor.cpp
@@ -15,6 +13,11 @@ extern float odom_x_m, odom_y_m, odom_yaw;   // 定義於 chassis_monitor.cpp
 
  void pinpoint_init(){
  	osDelay(500);
+ 	if (HAL_I2C_GetState(&hi2c1) != HAL_I2C_STATE_READY) {
+ 		HAL_I2C_DeInit(&hi2c1);
+ 		osDelay(20);
+ 		HAL_I2C_Init(&hi2c1);
+ 	}
 	// 需要改變正反向時加入
 	// pinpoint.setEncoderDirections(PinpointI2C::EncDir::Reversed, PinpointI2C::EncDir::Forward);
  	pinpoint.Pinpoint_Init();
@@ -38,19 +41,23 @@ extern float odom_x_m, odom_y_m, odom_yaw;   // 定義於 chassis_monitor.cpp
 //}
 
 void pinpoint_monitor(){
-	if (sec == update_period){
-		// pinpoint.Pinpoint_TaskLoop();
-		// sec = 0;
-		  // 檢查連線狀態
-        if (pinpoint.isConnected()) {
-            pinpoint.Pinpoint_TaskLoop();
-//        } else {
-//            // I2C 連線異常，嘗試重新初始化
-//            HAL_I2C_DeInit(&hi2c1);
-//            osDelay(100);
-//            HAL_I2C_Init(&hi2c1);
-        }
-        sec = 0;
+	static uint32_t last_ms = 0;
+	static uint8_t  fail_cnt = 0;
+	uint32_t now = HAL_GetTick();
+	if (now - last_ms < 50) return;   // 固定 50ms 間隔，不受 I2C 耗時影響
+	last_ms = now;
+
+	if (pinpoint.isConnected()) {
+		fail_cnt = 0;
+		pinpoint.Pinpoint_TaskLoop();
+	} else {
+		if (++fail_cnt >= 3) {         // 連續 3 次失敗（≈150ms）才嘗試重連
+			fail_cnt = 0;
+			HAL_I2C_DeInit(&hi2c1);
+			osDelay(10);
+			HAL_I2C_Init(&hi2c1);
+			pinpoint.Pinpoint_Init();
+		}
 	}
 }
 
