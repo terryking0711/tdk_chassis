@@ -53,3 +53,11 @@ void chassis_give_speed()
 	odom_y_m = chassis.y * 0.01f;      // cm -> m
 	odom_yaw = chassis.theta;          // rad
 }
+
+void chassis_give_vel_only()
+{
+	// Pinpoint 模式專用：只更新速度，不覆寫 Pinpoint 負責的位置
+	vel_x = chassis._Vx_now * 0.01f;
+	vel_y = chassis._Vy_now * 0.01f;
+	vel_z = chassis._W_now;
+}

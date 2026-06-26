@@ -15,6 +15,8 @@ extern float odom_x_m, odom_y_m, odom_yaw;   // 定義於 chassis_monitor.cpp
 
  void pinpoint_init(){
  	osDelay(500);
+	// 需要改變正反向時加入
+	// pinpoint.setEncoderDirections(PinpointI2C::EncDir::Reversed, PinpointI2C::EncDir::Forward);
  	pinpoint.Pinpoint_Init();
  }
 //void pinpoint_init(){

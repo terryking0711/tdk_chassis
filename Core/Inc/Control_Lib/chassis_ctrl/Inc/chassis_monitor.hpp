@@ -17,6 +17,7 @@ extern "C" {
 void chassis_monitor(void);
 void chassis_set_speed(float vx,float vy,float vz);
 void chassis_give_speed();
+void chassis_give_vel_only();
 extern float vel_x, vel_y, vel_z;
 extern float odom_x_m, odom_y_m, odom_yaw;   // 新增
 

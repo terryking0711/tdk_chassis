@@ -98,7 +98,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			tct++;
 		    // chassis_monitor();
 			chassis_set_speed(vx, vy, vz);
+#if ENABLE_PINPOINT
+		    chassis_give_vel_only();   // 位置由 Pinpoint 主導，只更新速度
+#else
 		    chassis_give_speed();
+#endif
 		  }
     /*
      * 只保留 HAL tick。
