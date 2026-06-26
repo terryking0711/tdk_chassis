@@ -31,9 +31,6 @@ int sec = 0, tct = 0;
  * 若未啟用 Pinpoint，提供本地 dummy pose。
  * 避免沒有 I2C 裝置時還去讀 Pinpoint。
  */
-static float dummy_pos_x = 0.0f;
-static float dummy_pos_y = 0.0f;
-static float dummy_pos_z = 0.0f;
 
 void StartDefaultTask(void *argument)
 {
@@ -79,15 +76,14 @@ void StartDefaultTask(void *argument)
         /*
          * 6A. 有 Pinpoint 時，用 Pinpoint pose。
          */
-        update_pinpoint_pose();
-        pinpoint_monitor();
-        update_pose(pos_x, pos_y, pos_z, vel_x, vel_y, vel_z);
+        pinpoint_monitor();        // 先刷新 bd（原本順序反了，會讀到舊資料）
+        update_pinpoint_pose();    // 再把 bd 轉成 SI 寫進 odom_* / vel_*
+        update_pose(odom_x_m, odom_y_m, odom_yaw, vel_x, vel_y, vel_z);
 #else
         /*
-         * 6B. 沒有 Pinpoint 時，不要碰 I2C。
-         * 先只回報 chassis velocity。
+         * 6B. 沒有 Pinpoint 時，用輪式運動學積分出的 odom。
          */
-        update_pose(dummy_pos_x, dummy_pos_y, dummy_pos_z, vel_x, vel_y, vel_z);
+        update_pose(odom_x_m, odom_y_m, odom_yaw, vel_x, vel_y, vel_z);
 #endif
 
         osDelay(10);

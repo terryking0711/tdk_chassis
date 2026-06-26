@@ -18,6 +18,7 @@ void chassis_monitor(void);
 void chassis_set_speed(float vx,float vy,float vz);
 void chassis_give_speed();
 extern float vel_x, vel_y, vel_z;
+extern float odom_x_m, odom_y_m, odom_yaw;   // 新增
 
 #ifdef __cplusplus
 }

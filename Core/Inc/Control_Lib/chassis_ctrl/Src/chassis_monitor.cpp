@@ -25,6 +25,7 @@ float w_goal,x_goal,y_goal;
 //extern PinpointI2C::BulkData bd;
 float x_error,y_error;
 float vel_x, vel_y, vel_z;
+float odom_x_m, odom_y_m, odom_yaw;   // 新增：輪式 odom 的 SI 輸出(公尺/弧度)
 
 
 void chassis_monitor(void) {
@@ -44,7 +45,11 @@ void chassis_set_speed(float vx,float vy,float vz)//阿包版的chassis monitor
 
 void chassis_give_speed()
 {
-	vel_x = chassis._Vx_now;
-	vel_y = chassis._Vy_now;
-	vel_z = chassis._W_now;
+	vel_x = chassis._Vx_now * 0.01f;   // cm/s -> m/s
+	vel_y = chassis._Vy_now * 0.01f;   // cm/s -> m/s
+	vel_z = chassis._W_now;            // rad/s
+
+	odom_x_m = chassis.x * 0.01f;      // cm -> m
+	odom_y_m = chassis.y * 0.01f;      // cm -> m
+	odom_yaw = chassis.theta;          // rad
 }

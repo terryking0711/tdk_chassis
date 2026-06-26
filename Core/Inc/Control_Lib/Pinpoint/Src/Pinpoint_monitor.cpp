@@ -10,6 +10,8 @@ extern I2C_HandleTypeDef hi2c1;
 extern int sec;
 float pos_x, pos_y, pos_z;
 bool check = 0;
+extern float vel_x, vel_y, vel_z;            // 定義於 chassis_monitor.cpp
+extern float odom_x_m, odom_y_m, odom_yaw;   // 定義於 chassis_monitor.cpp
 
  void pinpoint_init(){
  	osDelay(500);
@@ -51,11 +53,11 @@ void pinpoint_monitor(){
 }
 
 void update_pinpoint_pose(){
-	pos_x = bd.pos_x_mm;
-	pos_y = bd.pos_y_mm;
-	pos_z = bd.heading_rad;
-//	vel_x = bd.vel_x_mm_s;
-//	vel_y = bd.vel_y_mm_s;
-//	vel_z = bd.vel_h_rad_s;
+	odom_x_m = bd.pos_x_mm * 0.001f;    // mm -> m
+	odom_y_m = bd.pos_y_mm * 0.001f;    // mm -> m
+	odom_yaw = bd.heading_rad;          // rad
+	vel_x    = bd.vel_x_mm_s * 0.001f;  // mm/s -> m/s
+	vel_y    = bd.vel_y_mm_s * 0.001f;  // mm/s -> m/s
+	vel_z    = bd.vel_h_rad_s;          // rad/s
 }
 

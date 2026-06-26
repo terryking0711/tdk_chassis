@@ -94,13 +94,23 @@ void handle_state_agent_waiting(void) {
 }
 void handle_state_agent_available(void) {
   uros_create_entities();
-  rmw_uros_sync_session(1000);
+  if (rmw_uros_sync_session(1000) != RMW_RET_OK) {
+    uros_destroy_entities();     // 沒對到時間就退回，別帶壞 stamp 進 CONNECTED
+    status = AGENT_WAITING;
+    return;
+  }
   status = AGENT_CONNECTED;
 }
 void handle_state_agent_connected(void) {
+  static uint32_t last_sync_ms = 0;
   if(rmw_uros_ping_agent(20, 5) == RMW_RET_OK){
     rclc_executor_spin_some(&executor, RCL_MS_TO_NS(10));
     ping_fail_count = 0; // Reset ping fail count
+    uint32_t now = HAL_GetTick();
+    if (now - last_sync_ms > 5000) {   // 每 5 秒重新對時，抵銷 HSI 漂移
+      rmw_uros_sync_session(100);
+      last_sync_ms = now;
+    }
   } else {
     ping_fail_count++;
     if(ping_fail_count >= MAX_PING_FAIL_COUNT){
@@ -168,6 +178,17 @@ void uros_create_entities(void) {
   pose_msg.twist.twist.angular.x = 0.0;
   pose_msg.twist.twist.angular.y = 0.0;
   pose_msg.twist.twist.angular.z = 0.0;
+
+  // odom covariance（2D：未用到的 z/roll/pitch 給大值）
+  pose_msg.pose.covariance[0]  = 1e-3;  // x
+  pose_msg.pose.covariance[7]  = 1e-3;  // y
+  pose_msg.pose.covariance[14] = 1e6;   // z
+  pose_msg.pose.covariance[21] = 1e6;   // roll
+  pose_msg.pose.covariance[28] = 1e6;   // pitch
+  pose_msg.pose.covariance[35] = 1e-2;  // yaw
+  pose_msg.twist.covariance[0]  = 1e-3; // vx
+  pose_msg.twist.covariance[7]  = 1e-3; // vy
+  pose_msg.twist.covariance[35] = 1e-2; // wz
 
   rclc_publisher_init_default(                                                  // Initialize publisher for pose
     &arm_pub,
@@ -245,9 +266,9 @@ void cmd_vel_sub_cb(const void* msgin) {
   
   cmd_vel_msg = *msg;
 
-  vx = cmd_vel_msg.linear.x;
-  vy = cmd_vel_msg.linear.y;
-  vz = cmd_vel_msg.angular.z;
+  vx = cmd_vel_msg.linear.x * 100.0f;   // m/s -> cm/s（內部運動學用 cm）
+  vy = cmd_vel_msg.linear.y * 100.0f;   // m/s -> cm/s
+  vz = cmd_vel_msg.angular.z;           // rad/s 不變
 
 //  // 获取当前时间 (毫秒)
 //  uint32_t current_time = HAL_GetTick();
@@ -290,13 +311,19 @@ void cmd_vel_sub_cb(const void* msgin) {
 //  last_cmd_vel_time = current_time;
 }
 
-void update_pose(float pos_x, float pos_y, float pos_z, float vel_x, float vel_y, float vel_z){
-  pose_msg.pose.pose.position.x = pos_x;
-  pose_msg.pose.pose.position.y = pos_y;
-  pose_msg.pose.pose.orientation.z = pos_z;
-  pose_msg.twist.twist.linear.x = vel_x;
-  pose_msg.twist.twist.linear.y = vel_y;
-  pose_msg.twist.twist.angular.z = vel_z;
+void update_pose(float pos_x, float pos_y, float yaw, float vel_x, float vel_y, float vel_z){
+  pose_msg.pose.pose.position.x = pos_x;   // m
+  pose_msg.pose.pose.position.y = pos_y;   // m
+  pose_msg.pose.pose.position.z = 0.0;
+
+  pose_msg.pose.pose.orientation.x = 0.0;
+  pose_msg.pose.pose.orientation.y = 0.0;
+  pose_msg.pose.pose.orientation.z = sinf(yaw * 0.5f);   // 繞 Z 的四元數
+  pose_msg.pose.pose.orientation.w = cosf(yaw * 0.5f);
+
+  pose_msg.twist.twist.linear.x  = vel_x;  // m/s
+  pose_msg.twist.twist.linear.y  = vel_y;  // m/s
+  pose_msg.twist.twist.angular.z = vel_z;  // rad/s
 }
 
 
@@ -305,6 +332,9 @@ void pose_pub_timer_cb(rcl_timer_t * timer, int64_t last_call_time) {
   (void) last_call_time;
 
   int64_t now_ns = rmw_uros_epoch_nanos();
+  if (now_ns < 1500000000000000000LL) {  // 約 2017 年以前 → 視為尚未同步
+    return;                               // 不發出近 1970 的 stamp
+  }
   pose_msg.header.stamp.sec     = (int32_t)(now_ns / 1000000000LL);
   pose_msg.header.stamp.nanosec = (uint32_t)(now_ns % 1000000000LL);
 

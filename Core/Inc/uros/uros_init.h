@@ -81,7 +81,7 @@ void cmd_arm_sub_cb(const void* msgin);
 void pose_pub_timer_cb(rcl_timer_t * timer, int64_t last_call_time);
 void arm_pub_cb();
 
-void update_pose(float pos_x, float pos_y, float pos_z, float vel_x, float vel_y, float vel_z);
+void update_pose(float pos_x, float pos_y, float yaw, float vel_x, float vel_y, float vel_z);
 
 #ifdef __cplusplus
 }
