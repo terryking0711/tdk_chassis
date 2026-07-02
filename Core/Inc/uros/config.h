@@ -10,6 +10,6 @@
 // Hardware feature switches
 #define ENABLE_MOTOR_CONTROL 1
 #define ENABLE_CHASSIS_CONTROL 1
-#define ENABLE_PINPOINT 0
+#define ENABLE_PINPOINT 1
 
 #endif /* CONFIG_H */

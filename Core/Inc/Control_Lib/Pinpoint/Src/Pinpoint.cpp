@@ -27,7 +27,7 @@ void PinpointI2C::Pinpoint_Init()
     setOffsets(75.0f, -65.0f);  // 依你的機構量測
     // pinpoint.setYawScalar(1.0f);        // 通常不建議改動
     // 3) 方向確認（前+X、左+Y）
-    setEncoderDirections(PinpointI2C::EncDir::Reversed,
+    setEncoderDirections(PinpointI2C::EncDir::Forward,
                                   PinpointI2C::EncDir::Reversed);
     // 4) 開賽或程式啟動時：確保靜止後歸零+IMU校正（~0.25s）
     resetPosAndIMU();
